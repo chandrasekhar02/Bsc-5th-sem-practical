@@ -1,0 +1,22 @@
+5. Write a program to find the difference of two numbers & store the result in a memory 
+location 8830h.
+
+ans:-
+
+        ORG 1000H  ; Assuming the program starts at address 1000H
+
+; Load two numbers into registers B and C
+MOV B, 30H  ; Example value for the first number
+MOV C, 20H  ; Example value for the second number
+
+; Find the difference of the two numbers
+SUB C  ; Subtract the second number from the first
+
+; Store the result in memory location 8830h
+MOV H, 88H  ; High byte of the memory location (8830h)
+MOV L, 30H  ; Low byte of the memory location (8830h)
+MOV M, A    ; Store the result in the memory location
+
+HLT         ; Halt the program
+
+END         ; End of the program

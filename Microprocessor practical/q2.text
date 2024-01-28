@@ -1,0 +1,23 @@
+2. Write a program to copy a block of memory from one location 8820h to another location 
+8840h. 
+
+ans;-
+            ORG 1000H  ; Assuming the program starts at address 1000H
+
+MOV H, 88H  ; High byte of source memory location (8820h)
+MOV L, 20H  ; Low byte of source memory location (8820h)
+MOV DE, 8840H  ; Destination memory location (8840h)
+
+MOV B, 10H  ; Set the block size (number of bytes to copy)
+
+COPY_LOOP:
+  MOV A, M   ; Load a byte from the source address
+  MOV M, A   ; Store the byte at the destination address
+  INX H      ; Increment source address
+  INX DE     ; Increment destination address
+  DCX B      ; Decrement the block size counter
+  JNZ COPY_LOOP  ; Repeat until the block size becomes zero
+
+HLT         ; Halt the program
+
+END         ; End of the program

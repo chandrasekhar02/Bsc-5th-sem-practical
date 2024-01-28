@@ -1,0 +1,60 @@
+
+7.Write a program for 4 digit BCD addition and subtraction.(16 bit)
+
+
+
+
+ans;-
+
+    ORG 1000H  ; Assuming the program starts at address 1000H
+
+; Load two 4-digit BCD numbers into registers DE and HL
+MOV D, 02H  ; Example most significant digit of the first number
+MOV E, 34H  ; Example least significant digit of the first number
+
+MOV H, 01H  ; Example most significant digit of the second number
+MOV L, 23H  ; Example least significant digit of the second number
+
+; Perform BCD addition
+ADD L  ; Add the least significant digits
+JNC NO_CARRY_ADD  ; Jump if no carry
+
+DAA  ; Decimal Adjust Accumulator after addition with carry
+NO_CARRY_ADD:
+
+ADD E  ; Add the most significant digits
+JNC ADDITION_DONE  ; Jump if no carry
+
+DAA  ; Decimal Adjust Accumulator after addition with carry
+ADDITION_DONE:
+
+; The result is now in registers D (most significant digit) and E (least significant digit)
+
+; Display or use the result as needed
+
+; Perform BCD subtraction
+MOV A, L  ; Copy the least significant digit of the second number to register A
+SUB E  ; Subtract the least significant digits
+JNC NO_BORROW_SUB  ; Jump if no borrow
+
+DAA  ; Decimal Adjust Accumulator after subtraction with borrow
+NO_BORROW_SUB:
+
+MOV L, A  ; Update the least significant digit with the result
+
+MOV A, H  ; Copy the most significant digit of the second number to register A
+SUB D  ; Subtract the most significant digits
+JNC SUBTRACTION_DONE  ; Jump if no borrow
+
+DAA  ; Decimal Adjust Accumulator after subtraction with borrow
+SUBTRACTION_DONE:
+
+MOV H, A  ; Update the most significant digit with the result
+
+; The result after subtraction is now in registers H (most significant digit) and L (least significant digit)
+
+; Display or use the result as needed
+
+HLT  ; Halt the program
+
+END  ; End of the program

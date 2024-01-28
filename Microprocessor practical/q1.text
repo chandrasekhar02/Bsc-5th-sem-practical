@@ -1,0 +1,19 @@
+q1 Write a program to add two 8 bit numbers & store it in a memory location 8820h.
+
+ans:- 
+
+            ORG 1000H  ; Assuming the program starts at address 1000H
+
+MOV A, 0AH  ; Load the first 8-bit number into register A
+MOV B, 0BH  ; Load the second 8-bit number into register B
+
+ADD A, B    ; Add the contents of registers A and B, result in A
+
+MOV H, 88H  ; High byte of the memory location (8820h)
+MOV L, 20H  ; Low byte of the memory location (8820h)
+
+MOV M, A    ; Store the result in the memory location 8820h
+
+HLT         ; Halt the program
+
+END         ; End of the program
