@@ -1,0 +1,41 @@
+<!-- 3. Print the largest of three numbers.. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-Driven Program</title>
+</head>
+<body>
+
+<script>
+    // Function to find the largest of three numbers
+    function findLargestNumber(num1, num2, num3) {
+        return Math.max(num1, num2, num3);
+    }
+
+    // Function to handle user input and find the largest number
+    function processInput() {
+        var num1 = parseFloat(prompt("Enter the first number:"));
+        var num2 = parseFloat(prompt("Enter the second number:"));
+        var num3 = parseFloat(prompt("Enter the third number:"));
+
+        // Check if inputs are valid numbers
+        if (!isNaN(num1) && !isNaN(num2) && !isNaN(num3)) {
+            // Find the largest number
+            var largestNumber = findLargestNumber(num1, num2, num3);
+
+            // Display the result using alert
+            alert("The largest number is: " + largestNumber);
+        } else {
+            alert("Please enter valid numbers.");
+        }
+    }
+
+    // Trigger the processInput function when the page is loaded
+    window.onload = processInput;
+</script>
+
+</body>
+</html>

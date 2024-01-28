@@ -1,0 +1,42 @@
+<!-- 2. Find the factorial of a number n. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-Driven Program</title>
+</head>
+<body>
+
+<script>
+    // Function to calculate the factorial of a number
+    function calculateFactorial(n) {
+        if (n === 0 || n === 1) {
+            return 1;
+        } else {
+            return n * calculateFactorial(n - 1);
+        }
+    }
+
+    // Function to handle user input and calculate factorial
+    function processInput() {
+        var userInput = parseFloat(prompt("Enter a number to find its factorial:"));
+
+        if (!isNaN(userInput) && userInput >= 0 && Number.isInteger(userInput)) {
+            // Calculate factorial
+            var factorialResult = calculateFactorial(userInput);
+
+            // Display the result using alert
+            alert("Factorial of " + userInput + " is: " + factorialResult);
+        } else {
+            alert("Please enter a non-negative integer.");
+        }
+    }
+
+    // Trigger the processInput function when the page is loaded
+    window.onload = processInput;
+</script>
+
+</body>
+</html>

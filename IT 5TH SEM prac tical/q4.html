@@ -1,0 +1,53 @@
+<!--4. Enter a list of positive numbers terminated by Zero. Find the sum and average of these 
+numbers.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-Driven Program</title>
+</head>
+<body>
+
+<script>
+    // Function to calculate sum and average of an array of numbers
+    function calculateSumAndAverage(numbers) {
+        var sum = 0;
+        for (var i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+        var average = numbers.length > 0 ? sum / numbers.length : 0;
+        return { sum: sum, average: average };
+    }
+
+    // Function to handle user input and calculate sum and average
+    function processInput() {
+        var inputNumbers = [];
+        var input;
+        
+        do {
+            // Prompt the user to enter a number
+            input = parseFloat(prompt("Enter a positive number (enter 0 to finish):"));
+            
+            // Check if the input is a valid positive number
+            if (!isNaN(input) && input > 0) {
+                inputNumbers.push(input);
+            } else if (input < 0) {
+                alert("Please enter a positive number.");
+            }
+        } while (input !== 0);
+
+        // Calculate sum and average
+        var calculations = calculateSumAndAverage(inputNumbers);
+
+        // Display the results using alert
+        alert("Sum: " + calculations.sum + "\nAverage: " + calculations.average);
+    }
+
+    // Trigger the processInput function when the page is loaded
+    window.onload = processInput;
+</script>
+
+</body>
+</html>
