@@ -1,0 +1,32 @@
+4. Write a program to load two unsigned numbers in register b & c. Subtract b from c. If the 
+result is in 2’s complement, convert the result in absolute magnitude & display it
+
+ans;-
+
+        ORG 1000H  ; Assuming the program starts at address 1000H
+
+; Load two unsigned numbers into registers B and C
+MOV B, 30H  ; Example value for B
+MOV C, 50H  ; Example value for C
+
+; Subtract B from C
+SUB B
+
+; Check if the result is in 2's complement
+JNC POSITIVE_RESULT  ; Jump if no carry (result is positive)
+
+; Convert the result to absolute magnitude
+CMA  ; Complement the accumulator (invert all bits)
+INX D  ; Increment D register (to set the carry for the next addition)
+ADD D  ; Add D to the complemented result to obtain absolute magnitude
+
+POSITIVE_RESULT:
+; The result (absolute magnitude) is now in the accumulator (A)
+
+; Display the result (you need to replace this part with your actual display routine)
+; For simplicity, assuming ASCII conversion for display
+MOV A, E  ; Move the result to register E for display (you may adjust as needed)
+
+HLT  ; Halt the program
+
+END  ; End of the program

@@ -1,0 +1,32 @@
+3.Write a program to perform the subtraction of two 16 bit numbers.
+
+ans;-
+
+        ORG 1000H  ; Assuming the program starts at address 1000H
+
+; Load the first 16-bit number into registers H and L
+MOV H, MSB1  ; Most significant byte
+MOV L, LSB1  ; Least significant byte
+
+; Subtract the second 16-bit number from the first
+MOV B, MSB2  ; Most significant byte of the second number
+MOV C, LSB2  ; Least significant byte of the second number
+
+SUB C  ; Subtract the least significant byte
+MOV L, A  ; Store the result in the least significant byte
+
+MOV A, B  ; Move the most significant byte of the second number back to A
+SBB H  ; Subtract with borrow to account for the borrow from the least significant byte subtraction
+MOV H, A  ; Store the result in the most significant byte
+
+; The result is now in registers H (MSB) and L (LSB)
+
+HLT  ; Halt the program
+
+MSB1 DB 02H  ; Example most significant byte of the first number
+LSB1 DB 03H  ; Example least significant byte of the first number
+
+MSB2 DB 01H  ; Example most significant byte of the second number
+LSB2 DB 02H  ; Example least significant byte of the second number
+
+END  ; End of the program

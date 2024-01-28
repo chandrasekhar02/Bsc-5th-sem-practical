@@ -1,0 +1,42 @@
+8.Write a program to multiply two 8-bit numbers.
+
+
+ans;-
+
+ORG 1000H  ; Assuming the program starts at address 1000H
+
+; Load two 8-bit numbers into registers B and C
+MOV B, 15H  ; Example value for the first number
+MOV C, 0AH  ; Example value for the second number
+
+; Initialize the result (register D)
+MOV D, 00H
+
+; Initialize a counter (register E) for the loop
+MOV E, 08H  ; Number of bits in an 8-bit number
+
+MULTIPLY_LOOP:
+  RLC  ; Rotate left through carry (move the most significant bit of B into the carry)
+  JNC NO_ADDITION  ; Jump if no carry, i.e., the bit was 0
+
+  ; Add C to the result (D)
+  MOV A, D
+  ADD C
+  MOV D, A
+
+NO_ADDITION:
+  RLC  ; Rotate left through carry (shift B left)
+  MOV A, D  ; Move the result to the accumulator
+  RLC  ; Rotate left through carry (shift the result left)
+  MOV D, A  ; Move the rotated result back to D
+
+  DCX E  ; Decrement the counter
+  JNZ MULTIPLY_LOOP  ; Repeat the loop until all bits are processed
+
+; The result is now in registers D
+
+; Display or use the result as needed
+
+HLT  ; Halt the program
+
+END  ; End of the program

@@ -1,0 +1,38 @@
+9. Write a program to sort an array.
+
+ans;-
+
+ORG 1000H  ; Assuming the program starts at address 1000H
+
+MVI D, 07H  ; Number of elements in the array
+LXI H, ARRAY ; Load the address of the array into register H
+
+SORT_LOOP:
+  MVI C, 00H  ; Reset the index for each pass
+INNER_LOOP:
+  MOV A, M  ; Load the current element
+  INX H    ; Move to the next element
+  CMP M    ; Compare with the next element
+  JNC NO_SWAP  ; Jump if the current element is smaller or equal
+
+  ; Swap the elements if they are in the wrong order
+  MOV B, M
+  MOV M, A
+  DCX H
+  MOV A, B
+  MOV M, A
+
+NO_SWAP:
+  INX H    ; Move to the next element
+  DCR D    ; Decrement the counter
+  JNZ INNER_LOOP  ; Repeat inner loop until all elements are compared
+
+  DCX H    ; Move back to the last element
+  DCR D    ; Decrement the counter
+  JNZ SORT_LOOP   ; Repeat outer loop until all passes are done
+
+HLT  ; Halt the program
+
+ARRAY: DB 64, 34, 25, 12, 22, 11, 90  ; Example array
+
+END  ; End of the program
